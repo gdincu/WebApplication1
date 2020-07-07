@@ -12,7 +12,7 @@ import 'rxjs/Rx';
   templateUrl: './tireservice.component.html',
   styleUrls: ['./tireservice.component.css']
 })
-export class TireserviceComponent implements OnInit {
+export class TireserviceComponent{
 
   private url = 'https://localhost:44382/api/Tires';
   tires: Array<Tire>;

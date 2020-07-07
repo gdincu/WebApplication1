@@ -12,7 +12,7 @@ import 'rxjs/Rx';
   templateUrl: './typeservice.component.html',
   styleUrls: ['./typeservice.component.css']
 })
-export class TypeserviceComponent implements OnInit {
+export class TypeserviceComponent{
 
   private url = 'https://localhost:44382/api/Types';
   types: Array<Type>;

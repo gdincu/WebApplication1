@@ -12,7 +12,7 @@ import 'rxjs/Rx';
   templateUrl: './manufacturerservice.component.html',
   styleUrls: ['./manufacturerservice.component.css']
 })
-export class ManufacturerserviceComponent implements OnInit {
+export class ManufacturerserviceComponent{
 
   private url = 'https://localhost:44382/api/Manufacturers';
   manufacturers: Array<Manufacturer>;

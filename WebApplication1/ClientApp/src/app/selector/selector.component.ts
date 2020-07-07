@@ -18,4 +18,7 @@ export class SelectorComponent implements OnInit {
     console.log('Works');
   }
 
+  cancelUpdateMode(updateMode: boolean) {
+    this.updateMode = updateMode;
+  }
 }

@@ -23,6 +23,7 @@ export class ConfiguratorComponent implements OnInit {
   public tires: Tire[];  
   public tireService: TireserviceComponent;
   public typeService: TypeserviceComponent;
+  public types: Type[];
   //public styles: Style[];
   public styleService: StyleserviceComponent;
   //public manufacturers: Manufacturer[];
@@ -41,10 +42,16 @@ export class ConfiguratorComponent implements OnInit {
     }, error => console.error(error));
   }
 
-  types = this.typeService.getTypes();
-  styles = this.styleService.getStyles();
-  manufacturers = this.manufacturerService.getManufacturers();
-  locations = this.locationService.getLocations();
+  //test = this.typeService.getTypes().subscribe(result => this.types = result);  
 
-  ngOnInit() {}
+  //types = this.typeService.getTypes();
+  //styles = this.styleService.getStyles();
+  //manufacturers = this.manufacturerService.getManufacturers();
+  //locations = this.locationService.getLocations();
+
+  //var = types.filter()
+
+  ngOnInit() { }
+
+
 }

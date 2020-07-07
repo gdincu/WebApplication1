@@ -12,7 +12,7 @@ import 'rxjs/Rx';
   templateUrl: './styleservice.component.html',
   styleUrls: ['./styleservice.component.css']
 })
-export class StyleserviceComponent implements OnInit {
+export class StyleserviceComponent{
 
   private url = 'https://localhost:44382/api/Styles';
   styles: Array<Style>;
