@@ -18,7 +18,11 @@ export class SelectorComponent implements OnInit {
     console.log('updateMode set to true');
   }
 
-  update(updateMode: boolean) {
+  cancelUpdateMode(updateMode: boolean) {
+    this.updateMode = updateMode;
+  }
+
+  cancelUpdateMode(updateMode: boolean) {
     this.updateMode = updateMode;
   }
 }

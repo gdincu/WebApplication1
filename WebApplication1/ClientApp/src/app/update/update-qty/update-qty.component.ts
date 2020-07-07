@@ -10,14 +10,14 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./update-qty.component.css']
 })
 export class UpdateQtyComponent implements OnInit {
+  
   @Input() location: _Location;
   @Input() values: any;
   @Input() locationToShow: any;
   @Output() cancelUpdate = new EventEmitter();
   model: any = {};
-  public url = new URL(this.document.location.href);
+  public currentURL = this.document.location.href;
   public locations: _Location[];
-  public GET_ALL_LOCATIONS_URL: string = 'https://localhost:44382/api/Locations';
 
   constructor(@Inject(DOCUMENT) private document: Document,
     private locationService: Locationservice,
@@ -29,7 +29,7 @@ export class UpdateQtyComponent implements OnInit {
   }
 
   getLocations(): void {
-    this.http.get<_Location[]>(this.GET_ALL_LOCATIONS_URL)
+    this.http.get<_Location[]>(this.currentURL)
       .subscribe(locations => this.locations = locations.filter(x => x.id == this.locationToShow));
   }
 

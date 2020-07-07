@@ -17,6 +17,7 @@ import { Tireservice} from './_services/tireservice';
 import { Typeservice} from './_services/typeservice';
 import { Styleservice} from './_services/styleservice';
 import { Manufacturerservice} from './_services//manufacturerservice';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { Manufacturerservice} from './_services//manufacturerservice';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'increase-qty', component: IncreaseQtyComponent }
-    ])
+    ]),
+    BrowserAnimationsModule
   ],
   providers: [Locationservice, Tireservice, Typeservice, Manufacturerservice, Styleservice, AlertifyService],
   bootstrap: [AppComponent]

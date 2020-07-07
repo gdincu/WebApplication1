@@ -1,7 +1,8 @@
 <p *ngIf="!locations"><em>Loading...</em></p>
 
 <div class="row container-fluid">
-  <div class="col col-sm-4 m-1" *ngFor="let location of locations">
+
+  <div class="col col-sm-3" *ngFor="let location of locations">
 
     <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
       <div class="card-header">
@@ -17,11 +18,11 @@
           </ul>
         </div>
       </div>
+
   </div>
+
 </div>
 
 <div *ngIf="updateMode" class="container">
   <app-update-qty [values]="values" [locationToShow]="locationToShow" (cancelUpdate)="cancelUpdateMode($event)"></app-update-qty>
 </div>
-
-

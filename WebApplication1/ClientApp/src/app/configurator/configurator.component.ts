@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { Tire } from '../_shared/tire';
 import { DOCUMENT } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
@@ -11,6 +11,8 @@ import { Locationservice } from '../_services/locationservice';
 import { Styleservice } from '../_services/styleservice';
 import { Manufacturerservice} from '../_services/manufacturerservice';
 import { Typeservice } from '../_services/typeservice';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-configurator',
@@ -31,13 +33,11 @@ export class ConfiguratorComponent implements OnInit {
   public manufacturerService: Manufacturerservice;
   public locations: _Location[];
   public locationService: Locationservice;
-
-  public GET_ALL_TIRES_URL: string = 'https://localhost:44382/api/Tires';
-  public GET_ALL_LOCATIONS_URL: string = 'https://localhost:44382/api/Locations';
-  public GET_ALL_TYPES_URL: string = 'https://localhost:44382/api/TireTypes';
-  public GET_ALL_STYLES_URL: string = 'https://localhost:44382/api/TireStyles';
-  public GET_ALL_MANUFACTURERS_URL: string = 'https://localhost:44382/api/Manufacturers';
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  isEditable = false;
   public errorMessage = '';
+  @Output() cancelUpdate = new EventEmitter();
   
   constructor(@Inject('BASE_URL') baseUrl, private http: HttpClient) {
     http.get<Tire[]>(baseUrl + 'api/Tires')
@@ -95,7 +95,9 @@ export class ConfiguratorComponent implements OnInit {
 
   }
 
-  
+  cancel() {
+    this.cancelUpdate.emit(false);
+  }
 
 
 }

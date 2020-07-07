@@ -7,6 +7,6 @@
   </p>
 </div>
 
-  <div *ngIf="updateMode" class="container">
-    <app-configurator (update)="update($event)"></app-configurator>
+  <div *ngIf="updateMode">
+    <app-configurator (cancelUpdate)="cancelUpdateMode($event)"></app-configurator>
   </div>
