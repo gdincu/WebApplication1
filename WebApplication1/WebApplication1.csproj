@@ -34,15 +34,40 @@
 
   <ItemGroup>
     <None Remove="ClientApp\src\app\_shared\locationmodel.ts" />
+    <None Remove="ClientApp\src\app\_shared\manufacturer.ts" />
+    <None Remove="ClientApp\src\app\_shared\style.ts" />
+    <None Remove="ClientApp\src\app\_shared\tire.ts" />
+    <None Remove="ClientApp\src\app\_shared\type.ts" />
     <None Remove="Contexts\lnokut4p.4mu~" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\app\_services\" />
+    <TypeScriptCompile Include="ClientApp\src\app\_shared\locationmodel.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_shared\manufacturer.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\_shared\style.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\_shared\type.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="ClientApp\src\app\_shared\tire.ts" />
   </ItemGroup>
 
   <ItemGroup>
-    <TypeScriptCompile Include="ClientApp\src\app\_shared\locationmodel.ts" />
+    <None Update="ClientApp\src\app\_shared\manufacturer.js">
+      <DependentUpon>manufacturer.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\src\app\_shared\style.js">
+      <DependentUpon>style.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\src\app\_shared\type.js">
+      <DependentUpon>type.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\src\app\_shared\type.js.map">
+      <DependentUpon>type.js</DependentUpon>
+    </None>
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

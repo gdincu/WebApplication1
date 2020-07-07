@@ -1,1 +1,7 @@
-<p>configurator works!</p>
+<p *ngIf="!tires"><em>Loading...</em></p>
+
+<p>Select tire type:</p>
+<select>
+  <option  *ngFor="let tire of tires">{{tire.typeId}}</option>
+</select>
+
