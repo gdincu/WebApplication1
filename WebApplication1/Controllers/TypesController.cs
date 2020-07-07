@@ -12,11 +12,11 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class _TypeController : ControllerBase
+    public class TypesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public _TypeController(AppDbContext context)
+        public TypesController(AppDbContext context)
         {
             _context = context;
         }
