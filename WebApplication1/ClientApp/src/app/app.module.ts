@@ -13,7 +13,8 @@ import { Locationservice } from './_services/locationservice';
 import { AlertifyService } from './_services/alertify.service';
 import { SelectorComponent } from './selector/selector.component';
 import { ConfiguratorComponent } from './configurator/configurator.component';
-import { Tireservice} from './_services/tireservice';
+import { Tireservice } from './_services/tireservice';
+import { AuthenticationService } from './_services/auth.service';
 import { Typeservice} from './_services/typeservice';
 import { Styleservice} from './_services/styleservice';
 import { Manufacturerservice} from './_services//manufacturerservice';
@@ -40,7 +41,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [Locationservice, Tireservice, Typeservice, Manufacturerservice, Styleservice, AlertifyService],
+  providers: [Locationservice, Tireservice, Typeservice, Manufacturerservice, Styleservice, AlertifyService, AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

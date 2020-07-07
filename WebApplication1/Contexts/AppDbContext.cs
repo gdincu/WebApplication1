@@ -20,6 +20,7 @@ namespace WebApplication1.Contexts
         public DbSet<TireType> TireTypes { get; set; }
         public DbSet<Tire> Tires { get; set; }
         public DbSet<CarModel> CarModel { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }
