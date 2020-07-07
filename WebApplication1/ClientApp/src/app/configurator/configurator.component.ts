@@ -18,7 +18,8 @@ import { Typeservice } from '../_services/typeservice';
   styleUrls: ['./configurator.component.css']
 })
 export class ConfiguratorComponent implements OnInit {
-  public tires: Tire[];  
+  public tires: Tire[];
+  public tiresTemp: Tire[];
   public tireService: Tireservice;
   public typeService: Typeservice;
   public types: Type[];
@@ -71,26 +72,21 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   showOptions(t1: Text, t2: Text, t3: Text): void {
+    //returns names
     console.log(" Typelist: " + t1 + " Style: " + t2 + " Manufacturer: " + t3);
 
-    var typesList = this.types.filter(x => x.name === t1);
-    let typeIds = new Array<Number>();
-    for (let x of typesList)
-      typeIds.push(x.id);
+    //let tempss = selectedStyle;
 
-    var stylesList = this.styles.filter(x => x.name === t2);
-    let styleIds = new Array<Number>();
-    for (let x of stylesList)
-      styleIds.push(x.id);
+    let typeId = this.types.filter(x => x.name === t1)[0].id;
+    let styleId = this.styles.filter(x => x.name === t2)[0].id;
+    let manufacturerId = this.manufacturers.filter(x => x.name === t3)[0].id;
 
-    var manufacturersList = this.manufacturers.filter(x => x.name === t3);
-    let manufacturerIds = new Array<Number>();
-    for (let x of manufacturersList)
-      manufacturerIds.push(x.id);
+    //returns ids
+    console.log(typeId + " - " + styleId + " - " + manufacturerId);
 
-    let tiresListIds = new Array<Number>();
+    this.tiresTemp = this.tires.filter(x => x.typeId == typeId && x.styleId == styleId && x.typeId == typeId);
 
-    
+    //Stock
 
   }
 

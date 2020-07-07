@@ -25,13 +25,40 @@
 
 <div *ngIf="manufacturerList.value != '' && styleList.value != '' && typesList.value != ''">
 
-<br /><br />
+  <br /><br />
 
-<div>
-<button type="submit" (click)="showOptions(typesList.value,styleList.value,manufacturerList.value)" class="btn btn-primary">See options</button>
-</div>
+  <div>
+    <button type="submit" (click)="showOptions(typesList.value,styleList.value,manufacturerList.value)" class="btn btn-primary">See options</button>
+  </div>
 
-</div>
+  <p *ngIf="!tiresTemp"><em>Loading tires...</em></p>
+
+  <div class="row container-fluid">
+
+    <div class="col col-sm-4 m-1" *ngFor="let tireT of tiresTemp">
+
+      <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+        <div class="card-header">
+          <p>ID: {{tireT.id}}</p>
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>typeId: {{tireT.typeId}}</li>
+            <li>manufacturerId: {{tireT.manufacturerId}}</li>
+            <li>styleId: {{tireT.styleId}}</li>
+            <li>width: {{tireT.width}}</li>
+            <li>height: {{tireT.height}}</li>
+            <li>rimSize: {{tireT.rimSize}}</li>
+            <li>locationId: {{tireT.locationId}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  </div>
 
 
 
