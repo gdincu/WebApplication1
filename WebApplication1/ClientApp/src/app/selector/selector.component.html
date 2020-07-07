@@ -1,7 +1,12 @@
-  <div>
-    <button class="btn btn-success btn-lg m-3" (click)="updateToggle()">Configure Tire</button>
-  </div>
+<div class="jumbotron">
+  <h1 class="display-3">NetRom Tire Shop!</h1>
+  <p class="lead">Start configuring your dream tire by pressing on the below button.</p>
+  <hr class="my-4">
+  <p class="lead text-center" >
+    <button class="btn btn-success btn-lg" (click)="updateToggle()">Configure Tire</button>
+  </p>
+</div>
 
   <div *ngIf="updateMode" class="container">
-    <app-configurator (cancelUpdate)="cancelUpdateMode($event)"></app-configurator>
+    <app-configurator (update)="update($event)"></app-configurator>
   </div>

@@ -15,10 +15,10 @@ export class SelectorComponent implements OnInit {
 
   updateToggle() {
     this.updateMode = true;
-    console.log('Works');
+    console.log('updateMode set to true');
   }
 
-  cancelUpdateMode(updateMode: boolean) {
+  update(updateMode: boolean) {
     this.updateMode = updateMode;
   }
 }

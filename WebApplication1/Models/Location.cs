@@ -9,11 +9,11 @@ namespace WebApplication1.Models
     public class Location
     {        
         public int Id { get; set; }
-        public string locationName { get; set; }
-        public int tireId { get; set; }
-        public int quantity { get; set; }
-        public int year { get; set; }
-        public double price { get; set; }
+        public string LocationName { get; set; }
+        public int TireId { get; set; }
+        public int Quantity { get; set; }
+        public int Year { get; set; }
+        public double Price { get; set; }
 
     }
 }

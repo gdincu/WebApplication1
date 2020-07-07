@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TireShop.Models;
 using WebApplication1.Models;
 
 namespace WebApplication1.Contexts
@@ -14,18 +15,11 @@ namespace WebApplication1.Contexts
             : base(options) { }
 
         public DbSet<Location> Locations { get; set; }
-
-        public DbSet<WebApplication1.Models.Manufacturer> Manufacturer { get; set; }
-
-        public DbSet<WebApplication1.Models.Style> Style { get; set; }
-
-        public DbSet<WebApplication1.Models._Type> _Type { get; set; }
-
-        public DbSet<WebApplication1.Models.Tire> Tire { get; set; }
-        //public DbSet<Manufacturer> Manufacturers { get; set; }
-        //public DbSet<Style> Styles { get; set; }
-        //public DbSet<Tire> Tires { get; set; }
-        //public DbSet<_Type> Types { get; set; }
+        public DbSet<Manufacturer> Manufacturers { get; set; }
+        public DbSet<TireStyle> TireStyles { get; set; }
+        public DbSet<TireType> TireTypes { get; set; }
+        public DbSet<Tire> Tires { get; set; }
+        public DbSet<CarModel> CarModel { get; set; }
 
     }
 }

@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    public class _Type
+    public class TireType
     {        
         public int Id { get; set; }
-        public string name { get; set; }
+        public string Name { get; set; }
 
     }
 }

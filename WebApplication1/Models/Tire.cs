@@ -9,16 +9,13 @@ namespace WebApplication1.Models
     public class Tire
     {        
         public int Id { get; set; }
-        public int typeId { get; set; }
-        public int manufacturerId { get; set; }
-        public int styleId { get; set; }
-        public int width { get; set; }
-        public int height { get; set; }
-        public int rimSize { get; set; }
-        public int locationId { get; set; }
-
-
-
+        public int TypeId { get; set; }
+        public int ManufacturerId { get; set; }
+        public int StyleId { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public int RimSize { get; set; }
+        public int LocationId { get; set; }
 
     }
 }

@@ -12,48 +12,48 @@ namespace TireShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ManufacturersController : ControllerBase
+    public class TireTypesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public ManufacturersController(AppDbContext context)
+        public TireTypesController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Manufacturers
+        // GET: api/TireTypes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Manufacturer>>> GetManufacturers()
+        public async Task<ActionResult<IEnumerable<TireType>>> GetTireTypes()
         {
-            return await _context.Manufacturers.ToListAsync();
+            return await _context.TireTypes.ToListAsync();
         }
 
-        // GET: api/Manufacturers/5
+        // GET: api/TireTypes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Manufacturer>> GetManufacturer(int id)
+        public async Task<ActionResult<TireType>> GetTireType(int id)
         {
-            var manufacturer = await _context.Manufacturers.FindAsync(id);
+            var tireType = await _context.TireTypes.FindAsync(id);
 
-            if (manufacturer == null)
+            if (tireType == null)
             {
                 return NotFound();
             }
 
-            return manufacturer;
+            return tireType;
         }
 
-        // PUT: api/Manufacturers/5
+        // PUT: api/TireTypes/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutManufacturer(int id, Manufacturer manufacturer)
+        public async Task<IActionResult> PutTireType(int id, TireType tireType)
         {
-            if (id != manufacturer.Id)
+            if (id != tireType.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(manufacturer).State = EntityState.Modified;
+            _context.Entry(tireType).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace TireShop.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ManufacturerExists(id))
+                if (!TireTypeExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace TireShop.Controllers
             return NoContent();
         }
 
-        // POST: api/Manufacturers
+        // POST: api/TireTypes
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Manufacturer>> PostManufacturer(Manufacturer manufacturer)
+        public async Task<ActionResult<TireType>> PostTireType(TireType tireType)
         {
-            _context.Manufacturers.Add(manufacturer);
+            _context.TireTypes.Add(tireType);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetManufacturer", new { id = manufacturer.Id }, manufacturer);
+            return CreatedAtAction("GetTireType", new { id = tireType.Id }, tireType);
         }
 
-        // DELETE: api/Manufacturers/5
+        // DELETE: api/TireTypes/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Manufacturer>> DeleteManufacturer(int id)
+        public async Task<ActionResult<TireType>> DeleteTireType(int id)
         {
-            var manufacturer = await _context.Manufacturers.FindAsync(id);
-            if (manufacturer == null)
+            var tireType = await _context.TireTypes.FindAsync(id);
+            if (tireType == null)
             {
                 return NotFound();
             }
 
-            _context.Manufacturers.Remove(manufacturer);
+            _context.TireTypes.Remove(tireType);
             await _context.SaveChangesAsync();
 
-            return manufacturer;
+            return tireType;
         }
 
-        private bool ManufacturerExists(int id)
+        private bool TireTypeExists(int id)
         {
-            return _context.Manufacturers.Any(e => e.Id == id);
+            return _context.TireTypes.Any(e => e.Id == id);
         }
     }
 }

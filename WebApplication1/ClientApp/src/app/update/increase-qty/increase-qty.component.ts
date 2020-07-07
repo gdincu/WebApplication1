@@ -1,8 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { _Location } from '../_shared/locationmodel';
-import { Locationservice} from '../_services/locationservice';
-import { AlertifyService } from '../_services/alertify.service';
+import { _Location } from '../../_shared/locationmodel';
+import { Locationservice } from '../../_services/locationservice';
+import { AlertifyService } from '../../_services/alertify.service';
 
 @Component({
   selector: 'app-increase-qty',

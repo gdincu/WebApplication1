@@ -18,6 +18,8 @@ import { Typeservice } from '../_services/typeservice';
   styleUrls: ['./configurator.component.css']
 })
 export class ConfiguratorComponent implements OnInit {
+
+  public currentURL = document.location.href;
   public tires: Tire[];
   public tiresTemp: Tire[];
   public tireService: Tireservice;
@@ -32,35 +34,38 @@ export class ConfiguratorComponent implements OnInit {
 
   public GET_ALL_TIRES_URL: string = 'https://localhost:44382/api/Tires';
   public GET_ALL_LOCATIONS_URL: string = 'https://localhost:44382/api/Locations';
-  public GET_ALL_TYPES_URL: string = 'https://localhost:44382/api/Types';
-  public GET_ALL_STYLES_URL: string = 'https://localhost:44382/api/Styles';
+  public GET_ALL_TYPES_URL: string = 'https://localhost:44382/api/TireTypes';
+  public GET_ALL_STYLES_URL: string = 'https://localhost:44382/api/TireStyles';
   public GET_ALL_MANUFACTURERS_URL: string = 'https://localhost:44382/api/Manufacturers';
   public errorMessage = '';
   
-  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Tire[]>(baseUrl + 'api/Tires').subscribe(result => {
+  constructor(@Inject('BASE_URL') baseUrl, private http: HttpClient) {
+    http.get<Tire[]>(baseUrl + 'api/Tires')
+      .subscribe(result => {
       this.tires = result;
-    }, error => console.error(error));
+      }, error => console.error(error));
+
+    console.log(baseUrl);
   }
 
   getTypes(): void {
-    this.http.get<Type[]>(this.GET_ALL_TYPES_URL)
+    this.http.get<Type[]>(this.currentURL + 'api/TireTypes')
       .subscribe(types => this.types = types);
       //.subscribe(types => this.types = types.filter(x => x.id == 11));
   }
 
   getStyles(): void {
-    this.http.get<Style[]>(this.GET_ALL_STYLES_URL)
+    this.http.get<Style[]>(this.currentURL + 'api/TireStyles')
       .subscribe(styles => this.styles = styles);
   }
 
   getManufacturers(): void {
-    this.http.get<Manufacturer[]>(this.GET_ALL_MANUFACTURERS_URL)
+    this.http.get<Manufacturer[]>(this.currentURL + 'api/Manufacturers')
       .subscribe(manufacturers => this.manufacturers = manufacturers);
   }
 
   getLocations(): void {
-    this.http.get<_Location[]>(this.GET_ALL_LOCATIONS_URL)
+    this.http.get<_Location[]>(this.currentURL + 'api/Locations')
       .subscribe(locations => this.locations = locations);
   }
 

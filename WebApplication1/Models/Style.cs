@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    public class Style
+    public class TireStyle
     {
         
         public int Id { get; set; }
-        public string name { get; set; }
+        public string Name { get; set; }
 
 
     }

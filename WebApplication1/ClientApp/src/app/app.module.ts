@@ -7,9 +7,8 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { IncreaseQtyComponent } from './increase-qty/increase-qty.component';
-import { UpdateQtyComponent } from './update-qty/update-qty.component';
+import { IncreaseQtyComponent } from './update/increase-qty/increase-qty.component';
+import { UpdateQtyComponent } from './update/update-qty/update-qty.component';
 import { Locationservice } from './_services/locationservice';
 import { AlertifyService } from './_services/alertify.service';
 import { SelectorComponent } from './selector/selector.component';
@@ -25,7 +24,6 @@ import { Manufacturerservice} from './_services//manufacturerservice';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
     IncreaseQtyComponent,
     UpdateQtyComponent,
     SelectorComponent,
@@ -37,8 +35,7 @@ import { Manufacturerservice} from './_services//manufacturerservice';
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'counter', component: CounterComponent },
-      { path: 'increase-qty', component: IncreaseQtyComponent },
+      { path: 'increase-qty', component: IncreaseQtyComponent }
     ])
   ],
   providers: [Locationservice, Tireservice, Typeservice, Manufacturerservice, Styleservice, AlertifyService],

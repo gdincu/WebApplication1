@@ -1,64 +1,75 @@
 <p *ngIf="!types || !tires || !manufacturers || !locations || !styles"><em>Loading...</em></p>
 
-<div>
-  <p>Select tire type:</p>
-  <select #typesList name="selectedType" [(ngModel)]="selectedType">
-    <option></option>
-    <option *ngFor="let type of types">{{type.name}}</option>
-  </select>
-</div>
+<div class="container container-fluid row">
 
+  <!--1st column-->
+  <div class="col">
 
-<p>Select style type:</p>
-<select #styleList name="selectedStyle" [(ngModel)]="selectedStyle">
-  <option></option>
-  <option *ngFor="let style of styles">{{style.name}}</option>
-</select>
-
-
-
-<p>Select manufacturer type:</p>
-<select #manufacturerList [(ngModel)]="selectedManufacturer" name="selectedManufacturer">
-  <option></option>
-  <option *ngFor="let manufacturer of manufacturers">{{manufacturer.name}}</option>
-</select>
-
-<div *ngIf="manufacturerList.value != '' && styleList.value != '' && typesList.value != ''">
-
-  <br /><br />
-
-  <div>
-    <button type="submit" (click)="showOptions(typesList.value,styleList.value,manufacturerList.value)" class="btn btn-primary">See options</button>
-  </div>
-
-  <p *ngIf="!tiresTemp"><em>Loading tires...</em></p>
-
-  <div class="row container-fluid">
-
-    <div class="col col-sm-4 m-1" *ngFor="let tireT of tiresTemp">
-
-      <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
-        <div class="card-header">
-          <p>ID: {{tireT.id}}</p>
-        </div>
-        <div class="card-body">
-          <ul>
-            <li>typeId: {{tireT.typeId}}</li>
-            <li>manufacturerId: {{tireT.manufacturerId}}</li>
-            <li>styleId: {{tireT.styleId}}</li>
-            <li>width: {{tireT.width}}</li>
-            <li>height: {{tireT.height}}</li>
-            <li>rimSize: {{tireT.rimSize}}</li>
-            <li>locationId: {{tireT.locationId}}</li>
-          </ul>
-        </div>
-      </div>
+    <div>
+      <p>Select tire type:</p>
+      <select #typesList name="selectedType" [(ngModel)]="selectedType">
+        <option></option>
+        <option *ngFor="let type of types">{{type.name}}</option>
+      </select>
     </div>
 
 
-  </div>
+    <p>Select style type:</p>
+    <select #styleList name="selectedStyle" [(ngModel)]="selectedStyle">
+      <option></option>
+      <option *ngFor="let style of styles">{{style.name}}</option>
+    </select>
+
+
+
+    <p>Select manufacturer type:</p>
+    <select #manufacturerList [(ngModel)]="selectedManufacturer" name="selectedManufacturer">
+      <option></option>
+      <option *ngFor="let manufacturer of manufacturers">{{manufacturer.name}}</option>
+    </select>
+
+    <br /><br />
+
+    <div *ngIf="manufacturerList.value != '' && styleList.value != '' && typesList.value != ''">
+      <button type="submit" (click)="showOptions(typesList.value,styleList.value,manufacturerList.value)" class="btn btn-primary">See options</button>
+    </div>
 
   </div>
 
+  
 
+ <!--2nd column-->
+
+<div class="col">  
+
+<p *ngIf="!tiresTemp"><em>Loading tires...</em></p>
+
+
+
+  <div class="col col-sm-4 m-1" *ngFor="let tireT of tiresTemp">
+
+    <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
+      <div class="card-header">
+        <p>ID: {{tireT.id}}</p>
+      </div>
+      <div class="card-body">
+        <ul>
+          <li>typeId: {{tireT.typeId}}</li>
+          <li>manufacturerId: {{tireT.manufacturerId}}</li>
+          <li>styleId: {{tireT.styleId}}</li>
+          <li>width: {{tireT.width}}</li>
+          <li>height: {{tireT.height}}</li>
+          <li>rimSize: {{tireT.rimSize}}</li>
+          <li>locationId: {{tireT.locationId}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+  
+
+
+</div>
 

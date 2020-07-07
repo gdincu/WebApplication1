@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
-import { Locationservice } from '../_services/locationservice';
+import { Locationservice } from '../../_services/locationservice';
 import { DOCUMENT } from '@angular/common';
-import { _Location } from '../_shared/locationmodel';
+import { _Location } from '../../_shared/locationmodel';
 import { HttpClient } from '@angular/common/http';
 
 @Component({

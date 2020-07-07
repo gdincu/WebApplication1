@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Contexts;
 using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
+namespace TireShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

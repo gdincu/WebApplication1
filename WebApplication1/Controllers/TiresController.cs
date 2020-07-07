@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Contexts;
 using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
+namespace TireShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -23,16 +23,16 @@ namespace WebApplication1.Controllers
 
         // GET: api/Tires
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Tire>>> GetTire()
+        public async Task<ActionResult<IEnumerable<Tire>>> GetTires()
         {
-            return await _context.Tire.ToListAsync();
+            return await _context.Tires.ToListAsync();
         }
 
         // GET: api/Tires/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Tire>> GetTire(int id)
         {
-            var tire = await _context.Tire.FindAsync(id);
+            var tire = await _context.Tires.FindAsync(id);
 
             if (tire == null)
             {
@@ -80,7 +80,7 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public async Task<ActionResult<Tire>> PostTire(Tire tire)
         {
-            _context.Tire.Add(tire);
+            _context.Tires.Add(tire);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetTire", new { id = tire.Id }, tire);
@@ -90,13 +90,13 @@ namespace WebApplication1.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<Tire>> DeleteTire(int id)
         {
-            var tire = await _context.Tire.FindAsync(id);
+            var tire = await _context.Tires.FindAsync(id);
             if (tire == null)
             {
                 return NotFound();
             }
 
-            _context.Tire.Remove(tire);
+            _context.Tires.Remove(tire);
             await _context.SaveChangesAsync();
 
             return tire;
@@ -104,7 +104,7 @@ namespace WebApplication1.Controllers
 
         private bool TireExists(int id)
         {
-            return _context.Tire.Any(e => e.Id == id);
+            return _context.Tires.Any(e => e.Id == id);
         }
     }
 }

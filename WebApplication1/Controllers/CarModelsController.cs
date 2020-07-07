@@ -5,55 +5,55 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using TireShop.Models;
 using WebApplication1.Contexts;
-using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
+namespace TireShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TypesController : ControllerBase
+    public class CarModelsController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public TypesController(AppDbContext context)
+        public CarModelsController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/_Type
+        // GET: api/CarModels
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<_Type>>> Get_Type()
+        public async Task<ActionResult<IEnumerable<CarModel>>> GetCarModel()
         {
-            return await _context._Type.ToListAsync();
+            return await _context.CarModel.ToListAsync();
         }
 
-        // GET: api/_Type/5
+        // GET: api/CarModels/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<_Type>> Get_Type(int id)
+        public async Task<ActionResult<CarModel>> GetCarModel(int id)
         {
-            var _Type = await _context._Type.FindAsync(id);
+            var carModel = await _context.CarModel.FindAsync(id);
 
-            if (_Type == null)
+            if (carModel == null)
             {
                 return NotFound();
             }
 
-            return _Type;
+            return carModel;
         }
 
-        // PUT: api/_Type/5
+        // PUT: api/CarModels/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put_Type(int id, _Type _Type)
+        public async Task<IActionResult> PutCarModel(int id, CarModel carModel)
         {
-            if (id != _Type.Id)
+            if (id != carModel.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(_Type).State = EntityState.Modified;
+            _context.Entry(carModel).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_TypeExists(id))
+                if (!CarModelExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // POST: api/_Type
+        // POST: api/CarModels
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<_Type>> Post_Type(_Type _Type)
+        public async Task<ActionResult<CarModel>> PostCarModel(CarModel carModel)
         {
-            _context._Type.Add(_Type);
+            _context.CarModel.Add(carModel);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Get_Type", new { id = _Type.Id }, _Type);
+            return CreatedAtAction("GetCarModel", new { id = carModel.Id }, carModel);
         }
 
-        // DELETE: api/_Type/5
+        // DELETE: api/CarModels/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<_Type>> Delete_Type(int id)
+        public async Task<ActionResult<CarModel>> DeleteCarModel(int id)
         {
-            var _Type = await _context._Type.FindAsync(id);
-            if (_Type == null)
+            var carModel = await _context.CarModel.FindAsync(id);
+            if (carModel == null)
             {
                 return NotFound();
             }
 
-            _context._Type.Remove(_Type);
+            _context.CarModel.Remove(carModel);
             await _context.SaveChangesAsync();
 
-            return _Type;
+            return carModel;
         }
 
-        private bool _TypeExists(int id)
+        private bool CarModelExists(int id)
         {
-            return _context._Type.Any(e => e.Id == id);
+            return _context.CarModel.Any(e => e.Id == id);
         }
     }
 }

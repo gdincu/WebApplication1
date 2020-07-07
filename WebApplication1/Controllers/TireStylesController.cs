@@ -8,52 +8,52 @@ using Microsoft.EntityFrameworkCore;
 using WebApplication1.Contexts;
 using WebApplication1.Models;
 
-namespace WebApplication1.Controllers
+namespace TireShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StylesController : ControllerBase
+    public class TireStylesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public StylesController(AppDbContext context)
+        public TireStylesController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Styles
+        // GET: api/TireStyles
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Style>>> GetStyle()
+        public async Task<ActionResult<IEnumerable<TireStyle>>> GetTireStyles()
         {
-            return await _context.Style.ToListAsync();
+            return await _context.TireStyles.ToListAsync();
         }
 
-        // GET: api/Styles/5
+        // GET: api/TireStyles/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Style>> GetStyle(int id)
+        public async Task<ActionResult<TireStyle>> GetTireStyle(int id)
         {
-            var style = await _context.Style.FindAsync(id);
+            var tireStyle = await _context.TireStyles.FindAsync(id);
 
-            if (style == null)
+            if (tireStyle == null)
             {
                 return NotFound();
             }
 
-            return style;
+            return tireStyle;
         }
 
-        // PUT: api/Styles/5
+        // PUT: api/TireStyles/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStyle(int id, Style style)
+        public async Task<IActionResult> PutTireStyle(int id, TireStyle tireStyle)
         {
-            if (id != style.Id)
+            if (id != tireStyle.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(style).State = EntityState.Modified;
+            _context.Entry(tireStyle).State = EntityState.Modified;
 
             try
             {
@@ -61,7 +61,7 @@ namespace WebApplication1.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StyleExists(id))
+                if (!TireStyleExists(id))
                 {
                     return NotFound();
                 }
@@ -74,37 +74,37 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // POST: api/Styles
+        // POST: api/TireStyles
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Style>> PostStyle(Style style)
+        public async Task<ActionResult<TireStyle>> PostTireStyle(TireStyle tireStyle)
         {
-            _context.Style.Add(style);
+            _context.TireStyles.Add(tireStyle);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetStyle", new { id = style.Id }, style);
+            return CreatedAtAction("GetTireStyle", new { id = tireStyle.Id }, tireStyle);
         }
 
-        // DELETE: api/Styles/5
+        // DELETE: api/TireStyles/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Style>> DeleteStyle(int id)
+        public async Task<ActionResult<TireStyle>> DeleteTireStyle(int id)
         {
-            var style = await _context.Style.FindAsync(id);
-            if (style == null)
+            var tireStyle = await _context.TireStyles.FindAsync(id);
+            if (tireStyle == null)
             {
                 return NotFound();
             }
 
-            _context.Style.Remove(style);
+            _context.TireStyles.Remove(tireStyle);
             await _context.SaveChangesAsync();
 
-            return style;
+            return tireStyle;
         }
 
-        private bool StyleExists(int id)
+        private bool TireStyleExists(int id)
         {
-            return _context.Style.Any(e => e.Id == id);
+            return _context.TireStyles.Any(e => e.Id == id);
         }
     }
 }
