@@ -2,23 +2,31 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
-<p *ngIf="!forecasts"><em>Loading...</em></p>
+<p *ngIf="!tires"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="forecasts">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="tires">
   <thead>
     <tr>
-      <th>Date</th>
-      <th>Temp. (C)</th>
-      <th>Temp. (F)</th>
-      <th>Summary</th>
+      <th>id</th>
+      <th>typeId</th>
+      <th>manufacturerId</th>
+      <th>styleId</th>
+      <th>width</th>
+      <th>height</th>
+      <th>rimSize</th>
+      <th>locationId</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let forecast of forecasts">
-      <td>{{ forecast.date }}</td>
-      <td>{{ forecast.temperatureC }}</td>
-      <td>{{ forecast.temperatureF }}</td>
-      <td>{{ forecast.summary }}</td>
+    <tr *ngFor="let tire of tires">
+      <td>{{ tire.id }}</td>
+      <td>{{ tire.typeId }}</td>
+      <td>{{ tire.manufacturerId }}</td>
+      <td>{{ tire.styleId }}</td>
+      <td>{{ tire.width }}</td>
+      <td>{{ tire.height }}</td>
+      <td>{{ tire.rimSize }}</td>
+      <td>{{ tire.locationId }}</td>
     </tr>
   </tbody>
 </table>
