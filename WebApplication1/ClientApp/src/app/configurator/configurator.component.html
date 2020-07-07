@@ -1,7 +1,22 @@
-<p *ngIf="!tires"><em>Loading...</em></p>
+<p *ngIf="!types || !tires || !manufacturers || !locations || !styles"><em>Loading...</em></p>
 
 <p>Select tire type:</p>
-<select>
-  <option  *ngFor="let tire of tires">{{tire.typeId}}</option>
+<select #typesList [(ngModel)]="selectedType" name="selectedType">
+  <option *ngFor="let type of types">{{type.name}}</option>
 </select>
+
+<div *ngIf="typesList.id == 1">
+  ...
+</div>
+
+<p>Select style type:</p>
+<select #styleList>
+  <option *ngFor="let style of styles">{{style.name}}</option>
+</select>
+
+<p>Select manufacturer type:</p>
+<select #manufacturerList>
+  <option *ngFor="let manufacturer of manufacturers">{{manufacturer.name}}</option>
+</select>
+
 

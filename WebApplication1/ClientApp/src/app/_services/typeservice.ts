@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Type } from '../../_shared/type';
+import { Type } from '../_shared/type';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
@@ -7,12 +7,10 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 
-@Component({
-  selector: 'app-typeservice',
-  templateUrl: './typeservice.component.html',
-  styleUrls: ['./typeservice.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class TypeserviceComponent{
+export class Typeservice{
 
   private url = 'https://localhost:44382/api/Types';
   types: Array<Type>;

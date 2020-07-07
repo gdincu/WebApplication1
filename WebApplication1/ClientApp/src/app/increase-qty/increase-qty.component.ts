@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { _Location } from '../_shared/locationmodel';
-import { LocationserviceComponent } from '../_services/locationservice/locationservice.component';
+import { Locationservice} from '../_services/locationservice';
 import { AlertifyService } from '../_services/alertify.service';
 
 @Component({
@@ -16,7 +16,7 @@ export class IncreaseQtyComponent implements OnInit {
   updateMode = false;
   errorMessage: string;
 
-  constructor(private locationService: LocationserviceComponent, private alertify: AlertifyService, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  constructor(private locationService: Locationservice, private alertify: AlertifyService, http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<_Location[]>(baseUrl + 'api/Locations').subscribe(result => {
       this.locations = result;
     }, error => console.error(error));

@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Style } from '../../_shared/style';
+import { Style } from '../_shared/style';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
@@ -7,12 +7,10 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 
-@Component({
-  selector: 'app-styleservice',
-  templateUrl: './styleservice.component.html',
-  styleUrls: ['./styleservice.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class StyleserviceComponent{
+export class Styleservice{
 
   private url = 'https://localhost:44382/api/Styles';
   styles: Array<Style>;

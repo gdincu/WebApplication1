@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Manufacturer } from '../../_shared/manufacturer';
+import { Manufacturer } from '../_shared/manufacturer';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
@@ -7,12 +7,10 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 
-@Component({
-  selector: 'app-manufacturerservice',
-  templateUrl: './manufacturerservice.component.html',
-  styleUrls: ['./manufacturerservice.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class ManufacturerserviceComponent{
+export class Manufacturerservice{
 
   private url = 'https://localhost:44382/api/Manufacturers';
   manufacturers: Array<Manufacturer>;

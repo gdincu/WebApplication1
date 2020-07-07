@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, Inject } from '@angular/core';
-import { LocationserviceComponent } from '../_services/locationservice/locationservice.component';
+import { Locationservice } from '../_services/locationservice';
 import { DOCUMENT } from '@angular/common';
 import { _Location } from '../_shared/locationmodel';
 import { HttpClient } from '@angular/common/http';
@@ -20,7 +20,7 @@ export class UpdateQtyComponent implements OnInit {
   public GET_ALL_LOCATIONS_URL: string = 'https://localhost:44382/api/Locations';
 
   constructor(@Inject(DOCUMENT) private document: Document,
-    private locationService: LocationserviceComponent,
+    private locationService: Locationservice,
     private http: HttpClient) { }
 
   ngOnInit() {

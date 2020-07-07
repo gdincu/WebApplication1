@@ -10,13 +10,14 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { IncreaseQtyComponent } from './increase-qty/increase-qty.component';
 import { UpdateQtyComponent } from './update-qty/update-qty.component';
-import { LocationserviceComponent } from './_services/locationservice/locationservice.component';
+import { Locationservice } from './_services/locationservice';
+import { AlertifyService } from './_services/alertify.service';
 import { SelectorComponent } from './selector/selector.component';
 import { ConfiguratorComponent } from './configurator/configurator.component';
-import { TireserviceComponent } from './_services/tireservice/tireservice.component';
-import { TypeserviceComponent } from './_services/typeservice/typeservice.component';
-import { StyleserviceComponent } from './_services/styleservice/styleservice.component';
-import { ManufacturerserviceComponent } from './_services/manufacturerservice/manufacturerservice.component';
+import { Tireservice} from './_services/tireservice';
+import { Typeservice} from './_services/typeservice';
+import { Styleservice} from './_services/styleservice';
+import { Manufacturerservice} from './_services//manufacturerservice';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { ManufacturerserviceComponent } from './_services/manufacturerservice/ma
       { path: 'increase-qty', component: IncreaseQtyComponent },
     ])
   ],
-  providers: [LocationserviceComponent, TireserviceComponent, TypeserviceComponent, ManufacturerserviceComponent, StyleserviceComponent],
+  providers: [Locationservice, Tireservice, Typeservice, Manufacturerservice, Styleservice, AlertifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

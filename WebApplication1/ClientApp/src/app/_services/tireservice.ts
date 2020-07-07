@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { Tire } from '../../_shared/tire';
+import { Tire } from '../_shared/tire';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
@@ -7,12 +7,10 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 
-@Component({
-  selector: 'app-tireservice',
-  templateUrl: './tireservice.component.html',
-  styleUrls: ['./tireservice.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-export class TireserviceComponent{
+export class Tireservice{
 
   private url = 'https://localhost:44382/api/Tires';
   tires: Array<Tire>;

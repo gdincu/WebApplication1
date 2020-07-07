@@ -1,18 +1,16 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Tire } from '../_shared/tire';
-import { HttpClient } from '@angular/common/http';
+import { DOCUMENT } from '@angular/common';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { Style } from '../_shared/style';
 import { Type } from '../_shared/type';
 import { Manufacturer } from '../_shared/manufacturer';
 import { _Location } from '../_shared/locationmodel';
-import { TireserviceComponent } from '../_services/tireservice/tireservice.component';
-import { LocationserviceComponent } from '../_services/locationservice/locationservice.component';
-import { StyleserviceComponent } from '../_services/styleservice/styleservice.component';
-import { ManufacturerserviceComponent } from '../_services/manufacturerservice/manufacturerservice.component';
-import { TypeserviceComponent } from '../_services/typeservice/typeservice.component';
-
-
-
+import { Tireservice } from '../_services/tireservice';
+import { Locationservice } from '../_services/locationservice';
+import { Styleservice } from '../_services/styleservice';
+import { Manufacturerservice} from '../_services/manufacturerservice';
+import { Typeservice } from '../_services/typeservice';
 
 @Component({
   selector: 'app-configurator',
@@ -21,37 +19,56 @@ import { TypeserviceComponent } from '../_services/typeservice/typeservice.compo
 })
 export class ConfiguratorComponent implements OnInit {
   public tires: Tire[];  
-  public tireService: TireserviceComponent;
-  public typeService: TypeserviceComponent;
+  public tireService: Tireservice;
+  public typeService: Typeservice;
   public types: Type[];
-  //public styles: Style[];
-  public styleService: StyleserviceComponent;
-  //public manufacturers: Manufacturer[];
-  public manufacturerService: ManufacturerserviceComponent;
-  //public locations: _Location[];
-  public locationService: LocationserviceComponent;
+  public styles: Style[];
+  public styleService: Styleservice;
+  public manufacturers: Manufacturer[];
+  public manufacturerService: Manufacturerservice;
+  public locations: _Location[];
+  public locationService: Locationservice;
 
   public GET_ALL_TIRES_URL: string = 'https://localhost:44382/api/Tires';
+  public GET_ALL_LOCATIONS_URL: string = 'https://localhost:44382/api/Locations';
   public GET_ALL_TYPES_URL: string = 'https://localhost:44382/api/Types';
   public GET_ALL_STYLES_URL: string = 'https://localhost:44382/api/Styles';
   public GET_ALL_MANUFACTURERS_URL: string = 'https://localhost:44382/api/Manufacturers';
-
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
+  public errorMessage = '';
+  
+  constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     http.get<Tire[]>(baseUrl + 'api/Tires').subscribe(result => {
       this.tires = result;
     }, error => console.error(error));
   }
 
-  //test = this.typeService.getTypes().subscribe(result => this.types = result);  
+  getTypes(): void {
+    this.http.get<Type[]>(this.GET_ALL_TYPES_URL)
+      .subscribe(types => this.types = types);
+      //.subscribe(types => this.types = types.filter(x => x.id == 11));
+  }
 
-  //types = this.typeService.getTypes();
-  //styles = this.styleService.getStyles();
-  //manufacturers = this.manufacturerService.getManufacturers();
-  //locations = this.locationService.getLocations();
+  getStyles(): void {
+    this.http.get<Style[]>(this.GET_ALL_STYLES_URL)
+      .subscribe(styles => this.styles = styles);
+  }
 
-  //var = types.filter()
+  getManufacturers(): void {
+    this.http.get<Manufacturer[]>(this.GET_ALL_MANUFACTURERS_URL)
+      .subscribe(manufacturers => this.manufacturers = manufacturers);
+  }
 
-  ngOnInit() { }
+  getLocations(): void {
+    this.http.get<_Location[]>(this.GET_ALL_LOCATIONS_URL)
+      .subscribe(locations => this.locations = locations);
+  }
+
+  ngOnInit() {
+    this.getTypes();
+    this.getStyles();
+    this.getManufacturers();
+    this.getLocations();
+  }
 
 
 }

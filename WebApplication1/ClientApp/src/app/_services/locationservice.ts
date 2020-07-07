@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable } from '@angular/core';
-import { _Location } from '../../_shared/locationmodel';
+import { _Location } from '../_shared/locationmodel';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from "rxjs/operators";
@@ -7,13 +7,10 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/Rx';
 
-@Component({
-  selector: 'app-locationservice',
-  templateUrl: './locationservice.component.html',
-  styleUrls: ['./locationservice.component.css']
+@Injectable({
+  providedIn: 'root'
 })
-@Injectable()
-export class LocationserviceComponent {
+export class Locationservice {
 
   private url = 'https://localhost:44382/api/Locations';
   comments: Array<_Location>;
