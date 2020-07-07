@@ -12,6 +12,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { IncreaseQtyComponent } from './increase-qty/increase-qty.component';
 import { UpdateQtyComponent } from './update-qty/update-qty.component';
 import { LocationserviceComponent } from './_services/locationservice/locationservice.component';
+import { SelectorComponent } from './selector/selector.component';
+import { ConfiguratorComponent } from './configurator/configurator.component';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { LocationserviceComponent } from './_services/locationservice/locationse
     FetchDataComponent,
     IncreaseQtyComponent,
     UpdateQtyComponent,
+    SelectorComponent,
+    ConfiguratorComponent,
     //LocationserviceComponent,
   ],
   imports: [
