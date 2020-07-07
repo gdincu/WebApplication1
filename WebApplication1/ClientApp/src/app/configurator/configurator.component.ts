@@ -70,5 +70,31 @@ export class ConfiguratorComponent implements OnInit {
     this.getLocations();
   }
 
+  showOptions(t1: Text, t2: Text, t3: Text): void {
+    console.log(" Typelist: " + t1 + " Style: " + t2 + " Manufacturer: " + t3);
+
+    var typesList = this.types.filter(x => x.name === t1);
+    let typeIds = new Array<Number>();
+    for (let x of typesList)
+      typeIds.push(x.id);
+
+    var stylesList = this.styles.filter(x => x.name === t2);
+    let styleIds = new Array<Number>();
+    for (let x of stylesList)
+      styleIds.push(x.id);
+
+    var manufacturersList = this.manufacturers.filter(x => x.name === t3);
+    let manufacturerIds = new Array<Number>();
+    for (let x of manufacturersList)
+      manufacturerIds.push(x.id);
+
+    let tiresListIds = new Array<Number>();
+
+    
+
+  }
+
+  
+
 
 }
