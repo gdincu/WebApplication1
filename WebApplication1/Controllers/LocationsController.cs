@@ -21,14 +21,14 @@ namespace WebApplication1.Controllers
             _context = context;
         }
 
-        // GET: api/Locations1
+        // GET: api/Locations
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Location>>> GetLocations()
         {
             return await _context.Locations.ToListAsync();
         }
 
-        // GET: api/Locations1/5
+        // GET: api/Locations/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Location>> GetLocation(int id)
         {
@@ -42,7 +42,7 @@ namespace WebApplication1.Controllers
             return location;
         }
 
-        // PUT: api/Locations1/5
+        // PUT: api/Locations/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
@@ -74,7 +74,7 @@ namespace WebApplication1.Controllers
             return NoContent();
         }
 
-        // POST: api/Locations1
+        // POST: api/Locations
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
@@ -86,7 +86,7 @@ namespace WebApplication1.Controllers
             return CreatedAtAction("GetLocation", new { id = location.Id }, location);
         }
 
-        // DELETE: api/Locations1/5
+        // DELETE: api/Locations/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Location>> DeleteLocation(int id)
         {

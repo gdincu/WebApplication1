@@ -9,6 +9,7 @@ namespace WebApplication1.Models
     public class Location
     {        
         public int Id { get; set; }
+        public string locationName { get; set; }
         public int tireId { get; set; }
         public int quantity { get; set; }
         public int year { get; set; }
