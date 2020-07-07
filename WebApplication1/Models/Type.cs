@@ -7,8 +7,8 @@ namespace WebApplication1.Models
 {
     public class _Type: TMS
     {
-        private int id;
-        private string name;
+        public int id { get; set; }
+        public string name { get; set; }
 
         public _Type()
         {
@@ -18,18 +18,6 @@ namespace WebApplication1.Models
         {
             this.id = id;
             this.name = name;
-        }
-
-        public int Id
-        {
-            get { return this.id; }
-            set { this.id = value; }
-        }
-
-        public string Name
-        {
-            get { return this.name; }
-            set { this.name = value; }
         }
 
     }

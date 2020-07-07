@@ -49,7 +49,7 @@ namespace WebApplication1.Models
         public int LocationId {
             get { return this.locationId; }
             set { this.locationId = value; }
-        }*/
+        }
         
 
     }
