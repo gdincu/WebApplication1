@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    public class Type
+    public class _Type: TMS
     {
         private int id;
         private string name;
 
-        public Type()
+        public _Type()
         {
         }
 
-        public Type(int id, string name)
+        public _Type(int id, string name)
         {
             this.id = id;
             this.name = name;
