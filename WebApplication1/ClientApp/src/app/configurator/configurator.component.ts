@@ -54,18 +54,18 @@ export class ConfiguratorComponent implements OnInit {
     console.log(baseUrl);
   }
 
-  getTypes(t1: Text): void {
+  getTypes(): void {
     this.http.get<Type[]>(this.currentURL + 'api/TireTypes')
       .subscribe(types => this.types = types);
       //.subscribe(types => this.types = types.filter(x => x.id == 11));
   }
 
-  getStyles(t1: Text): void {
+  getStyles(): void {
     this.http.get<Style[]>(this.currentURL + 'api/TireStyles')
       .subscribe(styles => this.styles = styles);
   }
 
-  getManufacturers(t1: Text): void {
+  getManufacturers(): void {
     this.http.get<Manufacturer[]>(this.currentURL + 'api/Manufacturers')
       .subscribe(manufacturers => this.manufacturers = manufacturers);
   }
@@ -81,23 +81,25 @@ export class ConfiguratorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTypes(" ");
+    this.getTypes();
     this.getStyles();
     this.getManufacturers();
     this.getLocations();
     this.getCars();
   }
 
-  showOptions1(t1: Text,t2: Text) {
-
+  //Used to return tires by make and model 
+  /*showOptions1(t1: Text,t2: Text) {
     var carTemp = new CarModel();
+
     carTemp.Make = t1;
     carTemp.Model = t2;
 
     return this.http.post(this.currentURL + 'api/CarModels/getTiresForCar', carTemp).subscribe();
-  }
+  }*/
 
-  showOptions2(t1: Text, t2: Text, t3: Text) {
+
+  showOptions(t1: Text, t2: Text, t3: Text) {
 
     var tempTire = new TireOption();
     tempTire.TireType = t1;

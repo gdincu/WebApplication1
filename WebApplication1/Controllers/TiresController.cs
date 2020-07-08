@@ -53,7 +53,7 @@ namespace TireShop.Controllers
         // POST: api/Tires/getAvailableTires
         [HttpPost("{getAvailableTires}")]
         //public async Task<ActionResult<IEnumerable<Tire>>> PostTire(string styleName,string typeName,string manufName)
-            public List<Tire> PostTire(TireOption tireOption)
+            public List<TireSet> PostTire(TireOption tireOption)
         {
 
             //Getting the style, type and manuf ids
@@ -74,10 +74,24 @@ namespace TireShop.Controllers
                 if (_context.Locations.Where(b => b.TireId == x.Id && b.Quantity > 0).Any())
                     availableTire.Add(x);
 
+            List<TireSet> endList = new List<TireSet>();
+            foreach(Tire tt in availableTire)
+            {
+                TireSet t1 = new TireSet(
+                    _context.Locations.Where(b => b.TireId == tt.Id).FirstOrDefault().Year,
+                    tt.Width, 
+                    tt.Height, 
+                    tt.RimSize, 
+                    _context.Locations.Where(b => b.TireId == tt.Id).FirstOrDefault().Price,
+                    _context.Locations.Where(b => b.TireId == tt.Id).FirstOrDefault().Quantity
+                    );
+                endList.Add(t1);
+            }
+
             // set status code
             Response.StatusCode = 200;
 
-            return availableTire;
+            return endList;
 
         }
 
