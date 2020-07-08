@@ -76,6 +76,37 @@ namespace TireShop.Controllers
             return NoContent();
         }
 
+
+
+        // POST: api/Tires/getAvailableTires
+        [HttpPost("{getTiresForCar}")]
+        //public async Task<ActionResult<IEnumerable<Tire>>> PostTire(string styleName,string typeName,string manufName)
+        public List<Tire> PostCarModelTire(CarModel carModel)
+        {
+
+            //Getting a list of all available CarModels for the make and model
+            IQueryable<CarModel> tireId = _context.CarModel.Where(b => b.Make == carModel.Make && b.Model == carModel.Model);
+
+            //Saving the tire ids to a list
+            List<int> tireIds = new List<int>();
+            foreach (CarModel e in tireId)
+                if (_context.Locations.Where(b => b.TireId == e.TireId && b.Quantity > 0).Any())
+                    tireIds.Add(e.TireId);
+
+            
+            List<Tire> availableTire = new List<Tire>();
+            foreach (int id in tireIds)
+                if (_context.Tires.Where(resp => resp.Id == id).Any())
+                    availableTire.Add(_context.Tires.Find(id));
+
+            // set status code
+            Response.StatusCode = 200;
+
+            return availableTire;
+        }
+
+
+
         // POST: api/CarModels
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

@@ -37,6 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\_shared\car.ts" />
     <None Remove="ClientApp\src\app\_shared\locationmodel.ts" />
     <None Remove="ClientApp\src\app\_shared\manufacturer.ts" />
     <None Remove="ClientApp\src\app\_shared\style.ts" />
@@ -48,6 +49,9 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\_shared\locationmodel.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_shared\car.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\_shared\TireOption.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -64,6 +68,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ClientApp\src\app\_shared\manufacturer - Copy %282%29.js">
+      <DependentUpon>manufacturer.ts</DependentUpon>
+    </None>
+    <None Update="ClientApp\src\app\_shared\manufacturer - Copy - Copy.js">
+      <DependentUpon>manufacturer.ts</DependentUpon>
+    </None>
     <None Update="ClientApp\src\app\_shared\manufacturer - Copy.js">
       <DependentUpon>manufacturer.ts</DependentUpon>
     </None>

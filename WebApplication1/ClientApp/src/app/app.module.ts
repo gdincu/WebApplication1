@@ -19,6 +19,7 @@ import { Typeservice} from './_services/typeservice';
 import { Styleservice} from './_services/styleservice';
 import { Manufacturerservice} from './_services//manufacturerservice';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarService } from './_services/carService';
 
 
 @NgModule({
@@ -41,7 +42,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [Locationservice, Tireservice, Typeservice, Manufacturerservice, Styleservice, AlertifyService, AuthenticationService],
+  providers: [Locationservice, Tireservice, Typeservice, Manufacturerservice, Styleservice, AlertifyService, AuthenticationService, CarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
