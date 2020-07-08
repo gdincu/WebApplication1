@@ -15,6 +15,7 @@ namespace TireShop.Models
         public int Width { get; set; }
         public int Height { get; set; }
         public int RimSize { get; set; }
+        //public string Dot { get; set; } // format YYWW YY = year e.g. 2020 -> 20; WW = week e.g. 20 -> week 20
         public int LocationId { get; set; }
 
     }

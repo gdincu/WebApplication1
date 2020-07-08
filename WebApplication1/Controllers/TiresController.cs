@@ -14,6 +14,7 @@ using TireShop.Data;
 using TireShop.Helpers;
 using TireShop.Models;
 
+
 namespace TireShop.Controllers
 {
     //[Authorize]
@@ -49,23 +50,26 @@ namespace TireShop.Controllers
             return tire;
         }
 
-        //TO DO ==============================================================================
-        [HttpPost]
-        public List<Tire> PostTire(TireOption request)
+        // POST: api/Tires/getAvailableTires
+        [HttpPost("{getAvailableTires}")]
+        //public async Task<ActionResult<IEnumerable<Tire>>> PostTire(string styleName,string typeName,string manufName)
+            public List<Tire> PostTire(TireOption tireOption)
         {
+
             //Getting the style, type and manuf ids
-            var tireStyle = _context.TireStyles.Where(b => b.Name == request.TireStyle).FirstOrDefault();
-            var tireType = _context.TireTypes.Where(b => b.Name == request.TireType).FirstOrDefault();
-            var tireManuf = _context.Manufacturers.Where(b => b.Name == request.TireManufacturer).FirstOrDefault();
+            int tireStyle = _context.TireStyles.Where(b => b.Name == tireOption.TireStyle).FirstOrDefault().Id;
+            int tireType = _context.TireTypes.Where(b => b.Name == tireOption.TireType).FirstOrDefault().Id;
+            int tireManuf = _context.Manufacturers.Where(b => b.Name == tireOption.TireManufacturer).FirstOrDefault().Id;
 
             //Getting a list of potential tires
-            var potentialTire = _context.Tires.Where(
-                b => b.StyleId == tireStyle.Id
-                && b.ManufacturerId == tireManuf.Id
-                && b.TypeId == tireType.Id);
+            List<Tire> potentialTire = _context.Tires.Where(
+                b => b.StyleId == tireStyle
+                && b.ManufacturerId == tireManuf
+                && b.TypeId == tireType).ToList();
+
+            List<Tire> availableTire = new List<Tire>();
 
             //Getting a list of available tires based on the qty in Locations
-            var availableTire = new List<Tire>();
             foreach (Tire x in potentialTire)
                 if (_context.Locations.Where(b => b.TireId == x.Id && b.Quantity > 0).Any())
                     availableTire.Add(x);
@@ -74,9 +78,7 @@ namespace TireShop.Controllers
             Response.StatusCode = 200;
 
             return availableTire;
-            
-            //return Request.CreateResponse(HttpStatusCode.OK, "Success...");
-            //return new HttpResponseMessage(HttpStatusCode.OK, "Success....");
+
         }
 
 
