@@ -29,6 +29,7 @@ export class Locationservice {
 
   public save(location: _Location) {
     this.http.post(this.url, location).subscribe(_ => window.location.reload());
+    
   }
 
   update(location): Observable<_Location> {

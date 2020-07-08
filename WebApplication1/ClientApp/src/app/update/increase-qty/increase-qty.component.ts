@@ -43,6 +43,30 @@ export class IncreaseQtyComponent implements OnInit {
       );
   }
 
+  save(location,tireId, quantity, year, price) {
+
+    var tempLocation = new _Location();
+    tempLocation.locationName = location;
+    tempLocation.tireId = Number(tireId);
+    tempLocation.quantity = Number(quantity);
+    tempLocation.year = Number(year);
+    tempLocation.price = Number(price);
+    this.locationService.save(tempLocation);
+    console.log(tempLocation);
+    console.log('Comment added');
+  }
+
+  delete(location: _Location) {
+    if (confirm("Are you sure you want to delete location with id: " + location.id + "?")) {
+      this.locationService.delete(location.id)
+        .subscribe(_ => {
+          console.log('comment deleted');
+          this.locations = this.locations.filter(s => s.id !== location.id);
+        },
+          error => console.log('Cannot delete location!'));
+    }
+  }
+
   ngOnInit() {
     this.getlocations();
   }

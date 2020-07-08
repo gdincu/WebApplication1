@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { Tire } from '../_shared/tire';
 import { DOCUMENT } from '@angular/common';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Style } from '../_shared/style';
 import { Type } from '../_shared/type';
 import { Manufacturer } from '../_shared/manufacturer';
@@ -12,6 +12,8 @@ import { Styleservice } from '../_services/styleservice';
 import { Manufacturerservice} from '../_services/manufacturerservice';
 import { Typeservice } from '../_services/typeservice';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { TireOption } from '../_shared/TireOption';
 
 
 @Component({
@@ -23,7 +25,7 @@ export class ConfiguratorComponent implements OnInit {
 
   public currentURL = document.location.href;
   public tires: Tire[];
-  public tiresTemp: Tire[];
+  public tiresTemp: any;
   public tireService: Tireservice;
   public typeService: Typeservice;
   public types: Type[];
@@ -76,25 +78,17 @@ export class ConfiguratorComponent implements OnInit {
     this.getLocations();
   }
 
-  showOptions(t1: Text, t2: Text, t3: Text): void {
-    //returns names
-    console.log(" Typelist: " + t1 + " Style: " + t2 + " Manufacturer: " + t3);
+  showOptions(t1: Text, t2: Text, t3: Text) {
 
-    //let tempss = selectedStyle;
+    var tempTire = new TireOption();
+    tempTire.TireType = t1;
+    tempTire.TireStyle = t2;
+    tempTire.TireManufacturer = t3;
 
-    let typeId = this.types.filter(x => x.name === t1)[0].id;
-    let styleId = this.styles.filter(x => x.name === t2)[0].id;
-    let manufacturerId = this.manufacturers.filter(x => x.name === t3)[0].id;
+    return this.http.post(this.currentURL + 'api/Tires/getAvailableTires', tempTire).subscribe(res => this.tiresTemp = res);
 
-    //returns ids
-    console.log(typeId + " - " + styleId + " - " + manufacturerId);
-
-    this.tiresTemp = this.tires.filter(x => x.typeId == typeId && x.styleId == styleId && x.typeId == typeId);
-
-    //Stock
-
-  }
-
+}
+ 
   cancel() {
     this.cancelUpdate.emit(false);
   }

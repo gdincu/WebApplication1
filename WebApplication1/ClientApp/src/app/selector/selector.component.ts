@@ -20,16 +20,6 @@ export class SelectorComponent implements OnInit {
   updateToggle() {
     this.updateMode = true;
     console.log('updateMode set to true');
-
-    /*this.http.post(this.currentURL + 'api/getTires')
-      .subscribe(tires => this.tires = tires);
-
-
-    return this.http.post(this.currentURL + 'api/getTires', JSON.stringify({}), requestOptions)
-      .map((response: Response) => response.json())*/
-
-    console.log(this.tires);
-
   }
 
   cancelUpdateMode(updateMode: boolean) {

@@ -41,12 +41,16 @@
     <None Remove="ClientApp\src\app\_shared\manufacturer.ts" />
     <None Remove="ClientApp\src\app\_shared\style.ts" />
     <None Remove="ClientApp\src\app\_shared\tire.ts" />
+    <None Remove="ClientApp\src\app\_shared\TireOption.ts" />
     <None Remove="ClientApp\src\app\_shared\type.ts" />
     <None Remove="Data\lnokut4p.4mu~" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\_shared\locationmodel.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\_shared\TireOption.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\_shared\manufacturer.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -60,6 +64,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="ClientApp\src\app\_shared\manufacturer - Copy.js">
+      <DependentUpon>manufacturer.ts</DependentUpon>
+    </None>
     <None Update="ClientApp\src\app\_shared\manufacturer.js">
       <DependentUpon>manufacturer.ts</DependentUpon>
     </None>

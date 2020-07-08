@@ -2,22 +2,40 @@
 
 <div class="row container-fluid">
 
+  <!--Create a new entry location-->
+  <div class="card text-white bg-warning mb-3" style="max-width: 20rem;">
+    <div class="card-header">
+      <p><input #location type="text" class="form-control-plaintext" name="location" placeholder="Location"></p>
+      <button class="btn btn-info" (click)="save(location.value,tireId.value, quantity.value, year.value,price.value)">Save</button>
+    </div>
+    <div class="card-body">
+      <ul>
+        <li><input #tireId type="number" class="form-control-plaintext" name="tireId" placeholder="Tire ID"></li>
+        <li><input #quantity type="number" class="form-control-plaintext" name="quantity" placeholder="Quantity"></li>
+        <li><input #year type="number" class="form-control-plaintext" name="year" placeholder="Year"></li>
+        <li><input #price type="number" class="form-control-plaintext" name="price" placeholder="Price"></li>
+      </ul>
+    </div>
+  </div>
+
+  <!--Update an existing entry location-->
   <div class="col col-sm-3" *ngFor="let location of locations">
 
     <div class="card text-white bg-success mb-3" style="max-width: 20rem;">
       <div class="card-header">
-          <p>Location: {{location.locationName}}</p>
-          <button class="btn btn-danger btn-sm m-1" (click)="updateToggle(location)">Update</button>
-        </div>
-        <div class="card-body">
-          <ul>
-            <li>tireId: {{location.tireId}}</li>
-            <li>Quantity: {{location.quantity}}</li>
-            <li>Year: {{location.year}}</li>
-            <li>Price: {{location.price}}</li>
-          </ul>
-        </div>
+        <p>Location: {{location.locationName}}</p>
+        <button class="btn btn-dark btn-sm m-1" (click)="updateToggle(location)">Update</button>
+        <button class="btn btn-danger btn-sm m-1" (click)="delete(location)">Delete</button>
       </div>
+      <div class="card-body">
+        <ul>
+          <li>tireId: {{location.tireId}}</li>
+          <li>Quantity: {{location.quantity}}</li>
+          <li>Year: {{location.year}}</li>
+          <li>Price: {{location.price}}</li>
+        </ul>
+      </div>
+    </div>
 
   </div>
 
