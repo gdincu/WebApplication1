@@ -1,42 +1,54 @@
-<p *ngIf="!types || !tires || !manufacturers || !locations || !styles"><em>Loading...</em></p>
+<p *ngIf="!types || !tires || !manufacturers || !locations || !styles || !cars"><em>Loading...</em></p>
+
+
 
 <!-- Type, Style and Manufacturer Selection-->
 <div class="container container-fluid row m-lg-5">
 
-  <div class="col alert alert-warning m-1">
+  <div class="col alert alert-info col-sm-2 m-1">
+    <h6 class="alert-heading">Select make and model:</h6>
+    <select #carsList name="selectedCar" [(ngModel)]="selectedCar">
+      <option></option>
+      <option *ngFor="let car of cars">{{car.make}} {{car.model}}</option>
+    </select>
+    <button type="submit" (click)="getTypes(selectedCar)" class="btn btn-primary m-1">See options</button>
+  </div>
+
+  <div class="col alert alert-warning m-1" *ngIf="selectedCar">
     <h6 class="alert-heading">Select tire type:</h6>
-      <select #typesList name="selectedType" [(ngModel)]="selectedType">
-        <option></option>
-        <option *ngFor="let type of types">{{type.name}}</option>
-      </select>
-</div>
+    <select #typesList name="selectedType" [(ngModel)]="selectedType">
+      <option></option>
+      <option *ngFor="let type of types">{{type.name}}</option>
+    </select>
+    <button type="submit" (click)="getStyles(selectedType)" class="btn btn-primary m-1">See options</button>
+  </div>
 
-  <div class="col alert alert-success m-1">
+  <div class="col alert alert-success m-1" *ngIf="selectedCar">
     <h6 class="alert-heading">Select style type:</h6>
-      <select #styleList name="selectedStyle" [(ngModel)]="selectedStyle">
-        <option></option>
-        <option *ngFor="let style of styles">{{style.name}}</option>
-      </select>
-</div>
+    <select #styleList name="selectedStyle" [(ngModel)]="selectedStyle">
+      <option></option>
+      <option *ngFor="let style of styles">{{style.name}}</option>
+    </select>
+  </div>
 
-  <div class="col alert alert-info m-1">
+  <div class="col alert alert-info m-1" *ngIf="selectedCar">
     <h6>Select manufacturer type:</h6>
     <select #manufacturerList [(ngModel)]="selectedManufacturer" name="selectedManufacturer">
       <option></option>
       <option *ngFor="let manufacturer of manufacturers">{{manufacturer.name}}</option>
     </select>
-    </div>
+  </div>
 
   <div class="col">
     <br />
     <!--<div *ngIf="manufacturerList.value != '' && styleList.value != '' && typesList.value != ''">-->
     <div *ngIf="selectedType && selectedStyle && selectedManufacturer">
-      <button type="submit" (click)="showOptions(selectedType,selectedStyle,selectedManufacturer)" class="btn btn-primary m-1">See options</button>
+      <button type="submit" (click)="showOptions2(selectedType,selectedStyle,selectedManufacturer)" class="btn btn-primary m-1">See options</button>
       <button type="submit" (click)="cancel()" class="btn btn-danger m-1">Cancel</button>
     </div>
   </div>
 
-  </div>
+</div>
 
 <div class="container container-fluid row m-2">
 

@@ -14,6 +14,8 @@ import { Typeservice } from '../_services/typeservice';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { TireOption } from '../_shared/TireOption';
+import { CarService } from '../_services/carService';
+import { CarModel } from '../_shared/car';
 
 
 @Component({
@@ -28,10 +30,12 @@ export class ConfiguratorComponent implements OnInit {
   public tiresTemp: any;
   public tireService: Tireservice;
   public typeService: Typeservice;
+  public carService: CarService;
   public types: Type[];
   public styles: Style[];
   public styleService: Styleservice;
   public manufacturers: Manufacturer[];
+  public cars: CarModel[];
   public manufacturerService: Manufacturerservice;
   public locations: _Location[];
   public locationService: Locationservice;
@@ -50,18 +54,18 @@ export class ConfiguratorComponent implements OnInit {
     console.log(baseUrl);
   }
 
-  getTypes(): void {
+  getTypes(t1: Text): void {
     this.http.get<Type[]>(this.currentURL + 'api/TireTypes')
       .subscribe(types => this.types = types);
       //.subscribe(types => this.types = types.filter(x => x.id == 11));
   }
 
-  getStyles(): void {
+  getStyles(t1: Text): void {
     this.http.get<Style[]>(this.currentURL + 'api/TireStyles')
       .subscribe(styles => this.styles = styles);
   }
 
-  getManufacturers(): void {
+  getManufacturers(t1: Text): void {
     this.http.get<Manufacturer[]>(this.currentURL + 'api/Manufacturers')
       .subscribe(manufacturers => this.manufacturers = manufacturers);
   }
@@ -71,14 +75,29 @@ export class ConfiguratorComponent implements OnInit {
       .subscribe(locations => this.locations = locations);
   }
 
+  getCars(): void {
+    this.http.get<CarModel[]>(this.currentURL + 'api/CarModels')
+      .subscribe(cars => this.cars = cars);
+  }
+
   ngOnInit() {
-    this.getTypes();
+    this.getTypes(" ");
     this.getStyles();
     this.getManufacturers();
     this.getLocations();
+    this.getCars();
   }
 
-  showOptions(t1: Text, t2: Text, t3: Text) {
+  showOptions1(t1: Text,t2: Text) {
+
+    var carTemp = new CarModel();
+    carTemp.Make = t1;
+    carTemp.Model = t2;
+
+    return this.http.post(this.currentURL + 'api/CarModels/getTiresForCar', carTemp).subscribe();
+  }
+
+  showOptions2(t1: Text, t2: Text, t3: Text) {
 
     var tempTire = new TireOption();
     tempTire.TireType = t1;
@@ -86,8 +105,7 @@ export class ConfiguratorComponent implements OnInit {
     tempTire.TireManufacturer = t3;
 
     return this.http.post(this.currentURL + 'api/Tires/getAvailableTires', tempTire).subscribe(res => this.tiresTemp = res);
-
-}
+  }
  
   cancel() {
     this.cancelUpdate.emit(false);
