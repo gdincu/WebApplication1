@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Internal;
 using TireShop.Data;
+using TireShop.Helpers;
 using TireShop.Models;
 
 namespace TireShop.Controllers
@@ -43,6 +48,39 @@ namespace TireShop.Controllers
 
             return tire;
         }
+
+        //TO DO ==============================================================================
+        [HttpPost]
+        public List<Tire> PostTire(TireOption request)
+        {
+            //Getting the style, type and manuf ids
+            var tireStyle = _context.TireStyles.Where(b => b.Name == request.TireStyle).FirstOrDefault();
+            var tireType = _context.TireTypes.Where(b => b.Name == request.TireType).FirstOrDefault();
+            var tireManuf = _context.Manufacturers.Where(b => b.Name == request.TireManufacturer).FirstOrDefault();
+
+            //Getting a list of potential tires
+            var potentialTire = _context.Tires.Where(
+                b => b.StyleId == tireStyle.Id
+                && b.ManufacturerId == tireManuf.Id
+                && b.TypeId == tireType.Id);
+
+            //Getting a list of available tires based on the qty in Locations
+            var availableTire = new List<Tire>();
+            foreach (Tire x in potentialTire)
+                if (_context.Locations.Where(b => b.TireId == x.Id && b.Quantity > 0).Any())
+                    availableTire.Add(x);
+
+            // set status code
+            Response.StatusCode = 200;
+
+            return availableTire;
+            
+            //return Request.CreateResponse(HttpStatusCode.OK, "Success...");
+            //return new HttpResponseMessage(HttpStatusCode.OK, "Success....");
+        }
+
+
+
 
         // PUT: api/Tires/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
