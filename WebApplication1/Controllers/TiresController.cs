@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Contexts;
-using WebApplication1.Models;
+using TireShop.Data;
+using TireShop.Models;
 
 namespace TireShop.Controllers
 {

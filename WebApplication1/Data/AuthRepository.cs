@@ -1,11 +1,10 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using TireShop.Contexts;
+using TireShop.Data;
 using TireShop.Models;
-using WebApplication1.Contexts;
 
-namespace DatingApp.API.Data
+namespace TireShop.Data
 {
     public class AuthRepository : IAuthRepository
     {

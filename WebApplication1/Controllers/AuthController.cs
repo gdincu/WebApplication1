@@ -4,15 +4,14 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using DatingApp.API.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using TireShop.Contexts;
+using TireShop.Data;
 using TireShop.Dtos;
 using TireShop.Models;
 
-namespace DatingApp.API.Controllers
+namespace TireShop.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

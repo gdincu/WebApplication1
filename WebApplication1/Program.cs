@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using WebApplication1.Models;
+using TireShop.Models;
 
-namespace WebApplication1
+namespace TireShop
 {
     public class Program
     {

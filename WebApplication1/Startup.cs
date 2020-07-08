@@ -6,14 +6,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Contexts;
-using TireShop.Contexts;
-using DatingApp.API.Data;
+using TireShop.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
-namespace WebApplication1
+namespace TireShop
 {
     public class Startup
     {

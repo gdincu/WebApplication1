@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TireShop.Models;
-using WebApplication1.Contexts;
+using TireShop.Data;
 
 namespace TireShop.Controllers
 {

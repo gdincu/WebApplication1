@@ -41,7 +41,7 @@
     <None Remove="ClientApp\src\app\_shared\style.ts" />
     <None Remove="ClientApp\src\app\_shared\tire.ts" />
     <None Remove="ClientApp\src\app\_shared\type.ts" />
-    <None Remove="Contexts\lnokut4p.4mu~" />
+    <None Remove="Data\lnokut4p.4mu~" />
   </ItemGroup>
 
   <ItemGroup>

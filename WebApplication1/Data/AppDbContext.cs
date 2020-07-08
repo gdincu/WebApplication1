@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TireShop.Models;
-using WebApplication1.Models;
 
-namespace WebApplication1.Contexts
+namespace TireShop.Data
 {
     public class AppDbContext : DbContext
     {

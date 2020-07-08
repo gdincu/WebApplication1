@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TireShop.Models;
 
-namespace TireShop.Contexts
+namespace TireShop.Data
 {
     public interface IAuthRepository
     {
