@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TireShop.Data;
+using TireShop.Helpers;
 using TireShop.Models;
 
 namespace TireShop.Controllers
@@ -87,6 +88,24 @@ namespace TireShop.Controllers
 
             return CreatedAtAction("GetLocation", new { id = location.Id }, location);
         }
+
+        // POST: api/Locations/buyTires
+        [HttpPost("{buyTires}")]
+        //public async Task<ActionResult<IEnumerable<Tire>>> PostTire(string styleName,string typeName,string manufName)
+        public async void PostTire(TireSet tireSet)
+        {
+
+            Location temp = _context.Locations.Where(b => b.TireId == tireSet.Id).FirstOrDefault();
+
+            temp.Quantity -= tireSet.Quantity;
+
+            await PutLocation(temp.Id, temp);
+
+            // set status code
+            //Response.StatusCode = 200;
+
+        }
+
 
         // DELETE: api/Locations/5
         [HttpDelete("{id}")]

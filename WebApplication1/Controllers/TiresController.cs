@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -61,11 +62,17 @@ namespace TireShop.Controllers
             int tireType = _context.TireTypes.Where(b => b.Name == tireOption.TireType).FirstOrDefault().Id;
             int tireManuf = _context.Manufacturers.Where(b => b.Name == tireOption.TireManufacturer).FirstOrDefault().Id;
 
+            Trace.WriteLine(_context.TireStyles.Where(b => b.Name == tireOption.TireStyle).FirstOrDefault().Name);
+            Trace.WriteLine(_context.TireTypes.Where(b => b.Name == tireOption.TireType).FirstOrDefault().Name);
+            Trace.WriteLine(_context.TireTypes.Where(b => b.Name == tireOption.TireType).FirstOrDefault().Name);
+
             //Getting a list of potential tires
             List<Tire> potentialTire = _context.Tires.Where(
                 b => b.StyleId == tireStyle
                 && b.ManufacturerId == tireManuf
                 && b.TypeId == tireType).ToList();
+
+
 
             List<Tire> availableTire = new List<Tire>();
 
@@ -78,6 +85,8 @@ namespace TireShop.Controllers
             foreach(Tire tt in availableTire)
             {
                 TireSet t1 = new TireSet(
+                    tt.Id,
+                    _context.Locations.Where(b => b.TireId == tt.Id).FirstOrDefault().Id,
                     _context.Locations.Where(b => b.TireId == tt.Id).FirstOrDefault().Year,
                     tt.Width, 
                     tt.Height, 

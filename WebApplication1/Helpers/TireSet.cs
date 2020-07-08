@@ -7,8 +7,14 @@ namespace TireShop.Helpers
 {
     public class TireSet
     {
-        public TireSet(int year, int width, int height, int rimSize, double price, int quantity)
+        public TireSet()
         {
+        }
+
+        public TireSet(int id,int locationId, int year, int width, int height, int rimSize, double price, int quantity)
+        {
+            Id = id;
+            LocationId = locationId;
             Year = year;
             Width = width;
             Height = height;
@@ -17,6 +23,8 @@ namespace TireShop.Helpers
             Quantity = quantity;
         }
 
+        public int Id { get; set; }
+        public int LocationId { get; set; }
         public int Year { get; set; }
         public int Width { get; set; }
         public int Height { get; set; }

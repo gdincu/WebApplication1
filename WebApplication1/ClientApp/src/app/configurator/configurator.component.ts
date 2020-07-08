@@ -16,6 +16,7 @@ import { Observable } from 'rxjs';
 import { TireOption } from '../_shared/TireOption';
 import { CarService } from '../_services/carService';
 import { CarModel } from '../_shared/car';
+import { TireSet } from '../_shared/TireSet';
 
 
 @Component({
@@ -101,12 +102,26 @@ export class ConfiguratorComponent implements OnInit {
 
   showOptions(t1: Text, t2: Text, t3: Text) {
 
+    console.log("t1: " + t1 + " t2: " + t2 + " t3: " + t3);
+
     var tempTire = new TireOption();
     tempTire.TireType = t1;
     tempTire.TireStyle = t2;
     tempTire.TireManufacturer = t3;
 
     return this.http.post(this.currentURL + 'api/Tires/getAvailableTires', tempTire).subscribe(res => this.tiresTemp = res);
+  }
+
+  buy(t1: TireSet, t2: Number): void {
+
+    if (Number(t2) > t1.Quantity) { //t2 qty bought - t1 qty available
+      console.log('Insufficient qty available');
+      return;
+    }
+    else {
+      console.log(t1);
+    this.http.post(this.currentURL + 'api/Locations/buyTires', t1).subscribe();
+    }
   }
  
   cancel() {

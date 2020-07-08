@@ -44,7 +44,11 @@
 
     <div class="card text-white bg-primary mb-3" style="max-width: 20rem;">
       <div class="card-header">
-        <p>Quantity: {{tireT.quantity}}</p>
+        <p>Available Qty: {{tireT.quantity}}</p>
+        <div class="row">
+          <input #qtyBought type="number" class="col form-control" name="qtyBought" placeholder="Qty to buy">
+          <button type="submit" (click)="buy(tireT,qtyBought.value)" class="col btn btn-success">Buy</button>
+        </div>
       </div>
       <div class="card-body">
         <ul>
@@ -53,6 +57,8 @@
           <li>Height(cm): {{tireT.height}}</li>
           <li>Rim Size(cm): {{tireT.rimSize}}</li>
           <li>Price($): {{tireT.price}}</li>
+          <hr>
+          <li>Tire Id: {{tireT.id}}</li>
         </ul>
       </div>
     </div>
